@@ -1,7 +1,7 @@
 
 const puppeteer = require('puppeteer');
 
-function visit() {
+async function visit() {
     puppeteer.launch().then(async browser => {
       const page = await browser.newPage();
       await page.goto('http://i.eeman.me:8000');
@@ -9,5 +9,9 @@ function visit() {
     });
 }
 
-setInterval(visit, 1000)
+async function main() {
+    await visit()
+}
+
+main()
 
