@@ -50,3 +50,6 @@ RUN echo "chrome ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 
 USER chrome
 
+RUN mkdir trace
+
+RUN npm i --save speedline

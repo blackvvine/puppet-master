@@ -4,7 +4,8 @@
   "description": "Tests with puppeteer",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "google": "node google.js"
   },
   "repository": {
     "type": "git",
@@ -13,6 +14,7 @@
   "author": "jlandure",
   "license": "MIT",
   "dependencies": {
-    "puppeteer": "^1.15.0"
+    "puppeteer": "^1.15.0",
+    "speedline": "^1.4.2"
   }
 }
