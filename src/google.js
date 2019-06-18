@@ -51,9 +51,11 @@ async function google() {
         args: ["--disable-dev-shm-usage", '--no-sandbox']
     });
 
-    try {
+    const page = await browser.newPage();
 
-        const page = await browser.newPage();
+    let speedMetrics = null;
+
+    try {
 
         // Start tracing
         await page.tracing.start({
@@ -72,8 +74,26 @@ async function google() {
         console.error(e);
         process.exit(1)
     } finally {
+        speedMetrics = await page.metrics();
         browser.close();
     }
+
+    console.log("Calculating speed index");
+
+    const speedAnalysis = await speedline(traceFile);
+
+    const res = {
+        speedIndex: speedAnalysis.speedIndex,
+        perceptualSpeedIndex: speedAnalysis.perceptualSpeedIndex,
+        layoutDuration: speedMetrics.LayoutDuration,
+        styleDuration: speedMetrics.RecalcStyleDuration,
+        scriptDuration: speedMetrics.ScriptDuration,
+        taskDuration: speedMetrics.TaskDuration
+    };
+
+    console.log(res);
+
+    return res;
 
 }
 

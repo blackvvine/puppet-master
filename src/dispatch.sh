@@ -18,9 +18,9 @@ sleep 5
 sudo killall -15 tcpdump
 
 # keep SSL key log
-sudo cp $SSLKEYLOGFILE "/usr/src/app/out/$pcapfile.sslkeylogfile"
+sudo cp $SSLKEYLOGFILE "/usr/src/app/out/${pcapfile}.sslkeylogfile"
 
 # keep trace
-sudo cp trace/trace.json ""
+sudo cp trace/trace.json "/usr/src/app/out/${pcapfile}.trace.json"
 
 
