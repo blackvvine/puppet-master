@@ -22,5 +22,6 @@ sudo cp $SSLKEYLOGFILE "/usr/src/app/out/${pcapfile}.sslkeylogfile"
 
 # keep trace
 sudo cp trace/trace.json "/usr/src/app/out/${pcapfile}.trace.json"
+sudo cp trace/res.txt "/usr/src/app/out/${pcapfile}.res.json"
 
 

@@ -4,6 +4,7 @@ const util = require("util");
 const speedline = require("speedline");
 
 const readFile = util.promisify(fs.readFile);
+const writeFile = util.promisify(fs.writeFile);
 
 
 async function getRandomString() {
@@ -44,6 +45,7 @@ async function mainScenario(page) {
 async function google() {
 
     const traceFile = "trace/trace.json";
+    const resFile = "trace/res.txt";
 
     const browser = await puppeteer.launch({
         headless: true,
@@ -53,7 +55,7 @@ async function google() {
 
     const page = await browser.newPage();
 
-    let speedMetrics = null;
+    let speedMetrics;
 
     try {
 
@@ -92,6 +94,8 @@ async function google() {
     };
 
     console.log(res);
+
+    writeFile(resFile, JSON.stringify(res));
 
     return res;
 
