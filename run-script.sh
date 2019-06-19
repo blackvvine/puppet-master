@@ -25,7 +25,7 @@ then
     PORT_ARGS="-p $SERVE_OUT_PORT:$SERVE_OUT_PORT"
 fi
 
-docker run -it --rm $PORT_ARGS \
+docker run -d -it --rm $PORT_ARGS \
     -v $(pwd)/src:/usr/src/app/src \
     -v $(pwd)/out:/usr/src/app/out \
     --cap-add=SYS_ADMIN iman/puppet-master:1 \
