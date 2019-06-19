@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+DUMP_PCAPS=1
+
+DUMP_SSL=1
+
+DUMP_TRACE=1
+
+DUMP_SPEED=1
