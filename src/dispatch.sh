@@ -1,11 +1,17 @@
 #!/bin/bash
 
+DIR=$(dirname $0)
 
-source $(dirname $0)/config.sh
+source $DIR/config.sh
 
 # fetch args
 scriptfile=$1
 pcapfile=$2
+
+if [[ "$SERVE_OUT_ENABLED" == "1" ]]
+then
+    bash $DIR/server.sh $SERVE_OUT_PORT
+fi
 
 
 while [[ true ]]

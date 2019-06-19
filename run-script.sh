@@ -1,5 +1,7 @@
 #!/bin/bash
 
+source $(dirname $0)/src/config.sh
+
 if [ -z ${1+x} ]
 then
     echo script name missing
@@ -16,7 +18,14 @@ else
 fi
 
 
-docker run -it --rm \
+PORT_ARGS=""
+
+if [[ "$SERVE_OUT_ENABLED" == "1" ]]
+then
+    PORT_ARGS="-p $SERVE_OUT_PORT:$SERVE_OUT_PORT"
+fi
+
+docker run -it --rm $PORT_ARGS \
     -v $(pwd)/src:/usr/src/app/src \
     -v $(pwd)/out:/usr/src/app/out \
     --cap-add=SYS_ADMIN iman/puppet-master:1 \

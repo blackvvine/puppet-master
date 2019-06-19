@@ -31,6 +31,7 @@ RUN apk add tcpdump
 RUN apk add bash
 RUN apk add sudo
 RUN apk add curl
+RUN apk add screen
 
 RUN npm install -g promisify
 
