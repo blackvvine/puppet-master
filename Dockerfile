@@ -4,7 +4,7 @@
 FROM ubuntu:16.04
 
 RUN apt-get update
-RUN apt-get install -y node npm
+RUN apt-get install -y nodejs npm
 
 ARG KEYFILE="/tmp/sslkeylogfile"
 ARG APPDIR="/usr/src/app"
