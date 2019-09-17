@@ -11,6 +11,10 @@ RUN apt-get install -y curl sudo
 RUN curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
 RUN apt-get update
 RUN apt-get install -y nodejs
+RUN apt-get install -y chromium-browser
+RUN apt-get install -y tcpdump
+RUN apt-get install -y bash
+RUN apt-get install -y screen
 
 ARG KEYFILE="/tmp/sslkeylogfile"
 ARG APPDIR="/usr/src/app"
@@ -33,11 +37,6 @@ USER root
 RUN touch $KEYFILE
 RUN chown chrome $KEYFILE
 
-RUN apt-get install -y tcpdump
-RUN apt-get install -y bash
-RUN apt-get install -y sudo
-RUN apt-get install -y curl
-RUN apt-get install -y screen
 
 RUN npm install -g promisify
 
@@ -49,16 +48,14 @@ VOLUME $APPDIR/out/
 RUN chown -R chrome $APPDIR/
 RUN chmod 755 $APPDIR/out/
 
-ADD https://raw.githubusercontent.com/first20hours/google-10000-english/master/google-10000-english.txt $APPDIR/data/google-10000-english.txt
-
-# RUN curl -o $APPDIR/data/google-10000-english.txt https://raw.githubusercontent.com/first20hours/google-10000-english/master/google-10000-english.txt
-# COPY google-10000-english.txt $APPDIR/data/google-10000-english.txt
+ADD --chown=chrome https://raw.githubusercontent.com/first20hours/google-10000-english/master/google-10000-english.txt $APPDIR/data/google-10000-english.txt
 
 RUN echo "chrome ALL=(ALL) NOPASSWD: /usr/sbin/tcpdump" >> /etc/sudoers
 RUN echo "chrome ALL=(ALL) NOPASSWD: /usr/bin/killall" >> /etc/sudoers
 RUN echo "chrome ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 
-RUN apt install -y chromium-browser
+# ultimate TOFF
+RUN chown -R chrome .
 
 USER chrome
 
