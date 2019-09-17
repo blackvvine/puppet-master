@@ -1,6 +1,10 @@
 # FROM zenika/alpine-chrome:with-puppeteer
 
-FROM zenika/alpine-chrome:with-node
+# FROM zenika/alpine-chrome:with-node
+FROM ubuntu:16.04
+
+RUN apt-get update
+RUN apt-get install -y node npm
 
 ARG KEYFILE="/tmp/sslkeylogfile"
 ARG APPDIR="/usr/src/app"
@@ -26,12 +30,11 @@ USER root
 RUN touch $KEYFILE
 RUN chown chrome $KEYFILE
 
-RUN apk update
-RUN apk add tcpdump
-RUN apk add bash
-RUN apk add sudo
-RUN apk add curl
-RUN apk add screen
+RUN apt-get install -y tcpdump
+RUN apt-get install -y bash
+RUN apt-get install -y sudo
+RUN apt-get install -y curl
+RUN apt-get install -y screen
 
 RUN npm install -g promisify
 
