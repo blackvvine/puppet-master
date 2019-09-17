@@ -3,6 +3,8 @@
 # FROM zenika/alpine-chrome:with-node
 FROM ubuntu:16.04
 
+RUN adduser --disabled-password --gecos "" chrome
+
 RUN apt-get update
 RUN apt-get install -y nodejs npm
 
